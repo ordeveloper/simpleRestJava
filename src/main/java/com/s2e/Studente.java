@@ -1,7 +1,5 @@
 package com.s2e;
 
-import lombok.Getter;
-import lombok.Setter;
 
 public class Studente {
 	

@@ -1,5 +1,6 @@
 package com.s2e.sample;
 
+import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,48 +14,55 @@ import com.s2e.Studente;
 @RequestMapping("/Controller")
 public class Controller {
 
-    
+	private static final Logger log = Logger.getLogger(Controller.class.getName());
+
 	@RequestMapping(value = "/studente", method = RequestMethod.GET)
 	@ResponseBody
-    public Studente getSudente() {
-      Studente a = new Studente();
-      return a;
-    }
-	
+	public Studente getSudente() {
+		Studente a = new Studente();
+		return a;
+	}
+
 	@RequestMapping(value = "/cpu", method = RequestMethod.GET)
 	@ResponseBody
-    public void calcolaNumeriPrimi() {
-       // restituisce la lista dei numeri primi fino a x milioni
-    }
-	
+	// restituisce la lista dei numeri primi fino a x milioni
+	public void calcolaNumeriPrimi() {
+
+		log.info("test lettura cpu");
+	}
+
 	@RequestMapping(value = "/io", method = RequestMethod.GET)
 	@ResponseBody
-    public String ritornaMexIO(String message) {
-       // restituisce un grosso messaggio a partire da quello di input
+	// restituisce un grosso messaggio a partire da quello di input
+	public String ritornaMexIO(String message) {
+
+		log.info("Test trasmissione i/o");
+
 		return null;
-    }
-	
+	}
+
 	@RequestMapping(value = "/ram", method = RequestMethod.GET)
 	@ResponseBody
-    public String ritornaVettore() {
-       // restituisce un grosso vettore pieno e poi vuoto
+	// restituisce un grosso vettore pieno e poi vuoto
+	public String ritornaVettore() {
+		log.info("Test lettura ram");
 		return null;
-    }
-	
-	
+	}
+
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	@ResponseBody
-    public HttpStatus generaErrore() {
-       
+	//genera errore causale
+	public HttpStatus generaErrore() {
+
 		// il 5% dei casi ritorna errore altrimento OK
 		Double prob = Math.random();
+		log.info("probabilita rilevata " + prob.doubleValue());
 		if (prob < 0.05) {
 			return HttpStatus.INTERNAL_SERVER_ERROR;
-		}else {
+		} else {
 			return HttpStatus.OK;
 		}
-		
-		
-    }
-	
+
+	}
+
 }
